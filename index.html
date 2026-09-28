@@ -5,11 +5,11 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>SQL Interview Sim</title>
 <meta property="og:title" content="SQL Interview Sim — Practice SQL Like a Real Interview">
-<meta property="og:description" content="Randomized FAANG-style SQL questions, a real in-browser SQLite engine, interviewer-style coaching instead of a pass/fail verdict, and a hire-scale scorecard when you're done.">
+<meta property="og:description" content="Randomized interview-style SQL questions, a real in-browser SQLite engine, interviewer-style coaching instead of a pass/fail verdict, and a hire-scale scorecard when you're done.">
 <meta property="og:type" content="website">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="SQL Interview Sim — Practice SQL Like a Real Interview">
-<meta name="twitter:description" content="Randomized FAANG-style SQL questions with real-time execution, interviewer-style hints, and a hire-scale scorecard.">
+<meta name="twitter:description" content="Randomized interview-style SQL questions with real-time execution, interviewer-style hints, and a hire-scale scorecard.">
 <meta name="description" content="Practice SQL interview questions with randomized data, real SQLite execution, and interviewer-style coaching.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Sora:wght@500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
@@ -217,7 +217,7 @@
       <div class="mark">SQL</div>
       <div>
         <h1>SQL Interview Sim</h1>
-        <p>Randomized FAANG-style questions, live SQLite, interviewer-style hints</p>
+        <p>Randomized interview-style questions, live SQLite, interviewer-style hints</p>
       </div>
     </div>
     <div class="stats">
@@ -1049,7 +1049,30 @@ function describeExecResult(){
 
 document.getElementById('hintBtn').addEventListener('click', askForHint);
 async function askForHint(){
-  if(!sampleFn || !currentQuestion) return;
+  if(!currentQuestion) return;
+  
+  if(!sampleFn){
+  const hintFeed = document.getElementById('hintFeed');
+  const message = document.createElement('div');
+  message.className = 'hint-message';
+  message.innerHTML = `
+    <div class="hint-message-title">
+      Hints are available in the Claude version
+    </div>
+    <div class="hint-message-text">
+      This GitHub version runs the SQL practice environment, but the interactive interviewer
+      uses Claude to generate hints based on the question, your SQL, your results, and the
+      hints you've already received. Claude can give you a more personalized nudge instead
+      of revealing the answer.
+    </div>
+    <a class="btn" href="https://claude.ai/artifact/9eUdznfNhmxxZMiLv2iiQr"
+       target="_blank" rel="noopener noreferrer">
+      Open the AI Interviewer in Claude →
+    </a>`;
+  hintFeed.appendChild(message);
+  hintFeed.scrollTop = hintFeed.scrollHeight;
+  return;
+}
   const btn = document.getElementById('hintBtn');
   btn.disabled = true;
   statH++; document.getElementById('statH').textContent = statH;

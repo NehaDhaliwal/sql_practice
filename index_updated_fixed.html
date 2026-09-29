@@ -910,8 +910,8 @@ async function startQuestion(){
   document.getElementById('answerSection').innerHTML = '';
   document.getElementById('runBtn').disabled = false;
   document.getElementById('submitBtn').disabled = false;
-  document.getElementById('submitBtn').textContent = '✓ Submit answer';
-  document.getElementById('hintBtn').textContent = '💡 Ask for a hint';
+  document.getElementById('submitBtn').textContent = 'Submit answer';
+  document.getElementById('hintBtn').textContent = 'Ask for a hint';
   document.getElementById('giveUpBtn').style.display = 'inline';
 
   renderSchema(q.tables);
@@ -1060,7 +1060,7 @@ async function askForHint(){
     const message = document.createElement('div');
     message.className = 'hint-message';
     message.innerHTML = `
-      <div class="hint-message-title">💡 AI-powered hints are available in the Claude version</div>
+      <div class="hint-message-title">AI-powered hints are available in the Claude version</div>
       <div class="hint-message-text">
         This GitHub version runs the SQL practice environment, but the interactive interviewer
         uses Claude to generate hints based on the question, your SQL, your results, and the
